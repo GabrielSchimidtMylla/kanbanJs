@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="container-kanban">
@@ -24,11 +24,18 @@
         </div>
         <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
         <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="js/main.js" type="text/javascript"></script>
         <script>
             $(".container-kanban").Kanban({
                 templateCard: `<div class="card">
+                                    <p class="title">{{ title }}</p>
+                                    <p class="infos"><strong>RCI:</strong> {{ RCI }}</p>
+                                    <p class="infos"><strong>Produtor:</strong> {{ produtor }}</p>
+                                    <p class="infos"><strong>Região:</strong> {{ regiao }}</p>
+                                    <p class="infos"><strong>Data Situação:</strong> {{ data }}</p>
+                                    <p class="infos"><strong>Data Prev. Colheita:</strong> {{ colheita }}</p>
                                 </div>`,
                 panels: [{
                     id: 1,
@@ -56,23 +63,55 @@
                 }],
                 cards: [{
                     panelId: 1,
+                    id: 1,
                     cssColor: "blue-card",
-                    text: "Teste Card"
+                    content: {
+                        title: "Proposta - 88",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita:""
+                    }                    
                 },
                 {
                     panelId: 1,
+                    id: 2,
                     cssColor: "yellow-card",
-                    text: "Teste Card 2"
+                    content: {
+                        title: "Proposta - 89",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita:""
+                    }
                 },
                 {
                     panelId: 1,
+                    id: 3,
                     cssColor: "red-card",
-                    text: "Teste Card 3"
+                    content: {
+                        title: "Proposta - 90",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita:""
+                    }
                 },
                 {
                     panelId: 4,
+                    id: 4,
                     cssColor: "green-card",
-                    text: "Teste Card 5"
+                    content: {
+                        title: "Proposta - 91",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita:""
+                    }
                 }]
             });
         </script>
