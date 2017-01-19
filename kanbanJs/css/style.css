@@ -1,0 +1,19 @@
+.container-kanban
+{
+    width: 100%;
+    height: 450px;    
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.container-kanban > .panel-cards
+{
+    position: relative;
+    height: 100%;
+    width: 200px;
+    border: 1px solid #808080;
+    overflow-y: scroll;    
+    display: inline-block;
+}
