@@ -4,7 +4,7 @@
 
     $.fn.Kanban = (function (args) {
 
-         var _config = { };
+        var _config = {};
 
         if (args) { $.extend(_config, args); }
 
@@ -15,7 +15,7 @@
             var $panels = $(_config.panels);
             var _allCards = _config.cards;
             var _templateCard = _config.templateCard;
-            var _identificadorBasePanels = "_kanban_painel_";
+            var _identificadorBasePanels = "_kanban_panel_";
 
             function configureScroll(element) {
                 element.niceScroll({
@@ -68,13 +68,13 @@
                 });
 
                 //Cria as ligações
-                $panels.each(function(){
+                $panels.each(function () {
                     //Identificador interno
                     var _idPanel = "#" + _identificadorBasePanels + this.id;
                     //Correção de identificador
-                    var _targets = this.connectWith.map((item) => { return "#" + _identificadorBasePanels + item});                    
-                    if(_targets.length > 0)
-                        createSortable(_idPanel,_targets);
+                    var _targets = this.connectWith.map((item) => { return "#" + _identificadorBasePanels + item });
+                    if (_targets.length > 0)
+                        createSortable(_idPanel, _targets, this.onReceive, this.onSort);
                 });
             }
 
@@ -108,11 +108,13 @@
                 return _cards;
             }
 
-            function createSortable(element, targets) {
+            function createSortable(element, targets, onReceive, onSort) {
                 $(element).sortable({
                     connectWith: targets,
                     placeholder: "card-placeholder",
-                    revert: true
+                    revert: true,
+                    receive: onReceive,
+                    stop: onSort
                 }).disableSelection();
             }
 
@@ -122,6 +124,25 @@
             }
 
             initialize();
+        });
+    });
+
+    $.fn.revertKanban = (function (args) {
+        var _config = {};
+
+        if (args) { $.extend(_config, args); }
+
+        return this.each(function () {
+
+            if (_config === null || _config == undefined)
+                return;
+
+            var $target = _config.sender;
+            var $card = _config.item;
+            var $base = _config.item[0].parentElement;
+
+            $(this).find($base).find($card).remove();
+            $(this).find($target).append($card);
         });
     });
 
