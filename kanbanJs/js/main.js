@@ -33,8 +33,43 @@
                 configureScroll($containerKanban);
                 //Correção de posição dos scrolls filhos
                 $containerKanban.on("scroll", function () {
-                    $(".panel-cards").getNiceScroll().resize();
+                    refreshScroll(false);
                 });
+            }
+
+            function refreshScroll(container) {
+                if (container)
+                    $containerKanban.getNiceScroll().resize();
+
+                $(".panel-cards").getNiceScroll().resize();
+            }
+
+            function attachListenerCollapse(element) {
+
+                element.off("click", ".close-kanban")
+                    .on("click", ".close-kanban", function () {                        
+
+                        var $this = $(this);
+                        var $thisIcon = $this.find("i");
+                        var $description = $("<div class='vertical-description'></div>");
+
+                        var $parent = $(this).parents(".panel-kanban");
+
+                        $description.text($parent.find(".title-kanban").text());
+
+                        $parent.toggleClass("kanban-panel-collapse");
+                        $this.toggleClass("close-kanban-adjust");
+                        $thisIcon.toggleClass("fa-chevron-right").toggleClass("fa-chevron-left");                        
+
+                        if($parent.hasClass("kanban-panel-collapse"))
+                            $parent.append($description);
+                        else
+                            $parent.find(".vertical-description").remove();
+
+                        setTimeout(function () {
+                            refreshScroll(true);
+                        }, 1200);
+                    });
             }
 
             function createPanels() {
@@ -45,7 +80,7 @@
                     var _cardsPanel = [];
 
                     //Templates                   
-                    var $templateIconClose = $("<span class='close-kanban'><<</span>");
+                    var $templateIconClose = $("<span class='close-kanban'><i class='fa fa-chevron-left' aria-hidden='true'></i></span>");
                     var $templatePanelKanban = $("<div class='panel-kanban'></div>");
                     var $templateHeaderKanban = $("<div class='panel-header'></div>");
                     var $templateTitleKanban = $("<h4 class='title-kanban'></h4>");
@@ -75,9 +110,11 @@
                     var _idPanel = "#" + _identificadorBasePanels + this.id;
                     //Correção de identificador
                     var _targets = this.connectWith.map((item) => { return "#" + _identificadorBasePanels + item });
-                    
-                     createSortable(_idPanel, _targets, this.onReceive, this.onSort);
+
+                    createSortable(_idPanel, _targets, this.onReceive, this.onSort);
                 });
+
+                attachListenerCollapse($containerKanban);
             }
 
             function createCards(idPanel) {

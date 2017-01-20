@@ -13,6 +13,10 @@
     width: 260px; 
     display: inline-block;
     margin-left: 5px;
+    /*transition: width 1s;
+    -webkit-transition: width 1s;
+    -moz-transition: width 1s;
+    -o-transition: width 1s;*/
 }
 
 .panel-kanban > .panel-header
@@ -80,15 +84,50 @@
     background-color: #eee;
     width: 25px;
     height: 25px;
-    line-height: 26px;
     text-align: center;
     float: right;
     margin-right: 8px;
     font-family: sans-serif;
-    font-size: 10px;
-    font-weight: bold; 
 }
 
+.close-kanban-adjust
+{
+    margin-top: -50px;
+    margin-right: 5px;
+}
+
+.close-kanban > i{
+    margin-top: 6px;
+}
+
+.kanban-panel-collapse
+{
+    width: 30px !important;
+    background-color: #eee;
+    margin-top: 40px;
+    /*transition: width 1s;
+    -webkit-transition: width 1s;
+    -moz-transition: width 1s;
+    -o-transition: width 1s;*/
+}
+.kanban-panel-collapse>.panel-header>.title-kanban, .kanban-panel-collapse>.panel-cards
+{
+    display: none;
+}
+
+.vertical-description
+{
+    transform: rotate(90deg);
+    transform-origin: left top 0;
+    height: 100%;
+    float: left;
+    display: block;
+    position: relative;
+    right: -26px;
+    top: 16px;
+    text-align: center;
+    font-size: 17px;
+}
 
 /*Apartade*/
 .title
