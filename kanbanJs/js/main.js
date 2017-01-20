@@ -136,7 +136,7 @@
 
         return this.each(function () {
 
-            if (_config === null || _config == undefined)
+            if (_config === null || _config === undefined)
                 return;
 
             var $target = _config.sender;
