@@ -1,3 +1,9 @@
+/*
+    Desenvolvido por: Gabriel S. Mylla
+    Data: 20/01/2017
+    Versão: 1.0.0.0    
+ */
+
 (function ($) {
 
     "use strict";
