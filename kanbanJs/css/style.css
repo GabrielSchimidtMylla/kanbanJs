@@ -125,7 +125,6 @@
 {
     transform: rotate(90deg);
     transform-origin: left top 0;
-    height: 100%;
     float: left;
     display: block;
     position: relative;
