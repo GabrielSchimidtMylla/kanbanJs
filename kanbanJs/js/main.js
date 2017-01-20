@@ -25,7 +25,7 @@
                     background: '#404040',
                     cursorborder: '',
                     zindex: "auto",
-                    autohidemode: false
+                    autohidemode: true
                 });
             }
 
@@ -45,6 +45,7 @@
                     var _cardsPanel = [];
 
                     //Templates                   
+                    var $templateIconClose = $("<span class='close-kanban'><<</span>");
                     var $templatePanelKanban = $("<div class='panel-kanban'></div>");
                     var $templateHeaderKanban = $("<div class='panel-header'></div>");
                     var $templateTitleKanban = $("<h4 class='title-kanban'></h4>");
@@ -58,6 +59,7 @@
                     _cardsPanel = createCards(_idPanel);
 
                     //Create Elements in Dom
+                    $templateHeaderKanban.append($templateIconClose);
                     $templateHeaderKanban.append($templateTitleKanban);
                     $templatePanelCardsKanban.append(_cardsPanel);
                     $templatePanelKanban.append($templateHeaderKanban);
