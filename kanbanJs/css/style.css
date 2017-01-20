@@ -10,6 +10,7 @@
     height: 490px;    
     padding: 10px;
     white-space: nowrap;
+    outline: none;
 }
 
 .container-kanban > .panel-kanban
