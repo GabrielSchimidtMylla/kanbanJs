@@ -4,18 +4,18 @@
 
     $.fn.Kanban = (function (args) {
 
+         var _config = { };
+
+        if (args) { $.extend(_config, args); }
+
         return this.each(function () {
-
-            var _config = {
-            };
-
-            if (args) { $.extend(_config, args); }
 
             //Variaveis
             var $containerKanban = $(this);
             var $panels = $(_config.panels);
             var _allCards = _config.cards;
             var _templateCard = _config.templateCard;
+            var _identificadorBasePanels = "_kanban_painel_";
 
             function configureScroll(element) {
                 element.niceScroll({
@@ -30,7 +30,7 @@
             }
 
             function configureScrollContainer() {
-               configureScroll($containerKanban);
+                configureScroll($containerKanban);
                 //Correção de posição dos scrolls filhos
                 $containerKanban.on("scroll", function () {
                     $(".panel-cards").getNiceScroll().resize();
@@ -52,6 +52,8 @@
 
                     //Set Values
                     $templateTitleKanban.text(this.title);
+                    //Identificador interno
+                    $templatePanelCardsKanban.attr("id", _identificadorBasePanels + _idPanel);
 
                     _cardsPanel = createCards(_idPanel);
 
@@ -63,6 +65,16 @@
                     $containerKanban.append($templatePanelKanban);
 
                     configureScroll($templatePanelCardsKanban);
+                });
+
+                //Cria as ligações
+                $panels.each(function(){
+                    //Identificador interno
+                    var _idPanel = "#" + _identificadorBasePanels + this.id;
+                    //Correção de identificador
+                    var _targets = this.connectWith.map((item) => { return "#" + _identificadorBasePanels + item});                    
+                    if(_targets.length > 0)
+                        createSortable(_idPanel,_targets);
                 });
             }
 
@@ -96,18 +108,16 @@
                 return _cards;
             }
 
-            function createSortable() {
-                $(function () {
-                    $(".panel-cards").sortable({
-                        connectWith: ".panel-cards",
-                        placeholder: "card-placeholder"
-                    }).disableSelection();
-                });
+            function createSortable(element, targets) {
+                $(element).sortable({
+                    connectWith: targets,
+                    placeholder: "card-placeholder",
+                    revert: true
+                }).disableSelection();
             }
 
             function initialize() {
                 createPanels();
-                createSortable();
                 configureScrollContainer();
             }
 
