@@ -73,8 +73,8 @@
                     var _idPanel = "#" + _identificadorBasePanels + this.id;
                     //Correção de identificador
                     var _targets = this.connectWith.map((item) => { return "#" + _identificadorBasePanels + item });
-                    if (_targets.length > 0)
-                        createSortable(_idPanel, _targets, this.onReceive, this.onSort);
+                    
+                     createSortable(_idPanel, _targets, this.onReceive, this.onSort);
                 });
             }
 

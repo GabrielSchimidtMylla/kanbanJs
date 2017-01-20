@@ -20,7 +20,19 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="container-kanban">
+                <div id="kanban1" class="container-kanban">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="kanban2" class="container-kanban">
+                </div>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-md-12">
+                <div id="kanban3" class="container-kanban">
                 </div>
             </div>
         </div>
@@ -65,7 +77,7 @@
 
             }
 
-            $(".container-kanban").Kanban({
+            $("#kanban1").Kanban({
                 templateCard: `<div class="card">
                                     <p class="title">{{ title }}</p>
                                     <p class="infos"><strong>RCI:</strong> {{ RCI }}</p>
@@ -76,12 +88,12 @@
                                 </div>`,
                 panels: [{
                     id: 1,
-                    title: "FLUXO 1",
+                    title: "Pendentes de dados",
                     connectWith: [2]
                 },
                 {
                     id: 2,
-                    title: "FLUXO 2",
+                    title: "Pendentes de agendamento",
                     connectWith: [3],
                     onReceive: function (event, ui) {
                         $("#myModal").modal("show");
@@ -93,12 +105,12 @@
                 },
                 {
                     id: 3,
-                    title: "FLUXO 3",
+                    title: "Agendadas",
                     connectWith: [4]
                 },
                 {
                     id: 4,
-                    title: "FLUXO 4",
+                    title: "Distribuídas",
                     connectWith: [5],
                     onReceive: function (event, ui) {
                         $("#myModal").modal("show");
@@ -110,13 +122,18 @@
                 },
                 {
                     id: 5,
-                    title: "FLUXO 5",
+                    title: "Em atraso",
                     connectWith: [6]
                 },
                 {
                     id: 6,
-                    title: "FLUXO 6",
-                    connectWith: [1, 2]
+                    title: "Pendentes de laudo",
+                    connectWith: [7]
+                },
+                {
+                    id: 7,
+                    title: "Certificação do laudo",
+                    connectWith: [1, 2, 6]
                 }],
                 cards: [{
                     panelId: 1,
@@ -163,6 +180,144 @@
                     cssColor: "green-card",
                     content: {
                         title: "PROPOSTA - 91",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita: ""
+                    }
+                }]
+            });
+
+            $("#kanban2").Kanban({
+                templateCard: `<div class="card">
+                                    <p class="title">{{ title }}</p>
+                                    <p class="infos"><strong>RCI:</strong> {{ RCI }}</p>
+                                    <p class="infos"><strong>Produtor:</strong> {{ produtor }}</p>
+                                    <p class="infos"><strong>Região:</strong> {{ regiao }}</p>
+                                    <p class="infos"><strong>Data Situação:</strong> {{ data }}</p>
+                                    <p class="infos"><strong>Data Prev. Colheita:</strong> {{ colheita }}</p>
+                                </div>`,
+                panels: [{
+                    id: 8,
+                    title: "Enviadas ao cliente (CESB)",
+                    connectWith: [9, 10]
+                },
+                {
+                    id: 9,
+                    title: "Recusadas",
+                    connectWith: []
+                },
+                {
+                    id: 10,
+                    title: "Enviadas ao faturamento",
+                    connectWith: [8]
+                }],
+                cards: [{
+                    panelId: 8,
+                    id: 1,
+                    cssColor: "blue-card",
+                    content: {
+                        title: "PROPOSTA - 88",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita: "-"
+                    }
+                },
+                {
+                    panelId: 8,
+                    id: 2,
+                    cssColor: "yellow-card",
+                    content: {
+                        title: "PROPOSTA - 89",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita: ""
+                    }
+                },
+                {
+                    panelId: 8,
+                    id: 3,
+                    cssColor: "red-card",
+                    content: {
+                        title: "PROPOSTA - 90",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita: ""
+                    }
+                },
+                {
+                    panelId: 8,
+                    id: 4,
+                    cssColor: "green-card",
+                    content: {
+                        title: "PROPOSTA - 91",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita: ""
+                    }
+                }]
+            });
+
+            $("#kanban3").Kanban({
+                templateCard: `<div class="card">
+                                    <p class="title">{{ title }}</p>
+                                    <p class="infos"><strong>RCI:</strong> {{ RCI }}</p>
+                                    <p class="infos"><strong>Produtor:</strong> {{ produtor }}</p>
+                                    <p class="infos"><strong>Região:</strong> {{ regiao }}</p>
+                                    <p class="infos"><strong>Data Situação:</strong> {{ data }}</p>
+                                    <p class="infos"><strong>Data Prev. Colheita:</strong> {{ colheita }}</p>
+                                </div>`,
+                panels: [{
+                    id: 11,
+                    title: "Canceladas",
+                    connectWith: []
+                },
+                {
+                    id: 12,
+                    title: "Perdidas",
+                    connectWith: []
+                }],
+                cards: [{
+                    panelId: 11,
+                    id: 1,
+                    cssColor: "blue-card",
+                    content: {
+                        title: "PROPOSTA - 88",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita: "-"
+                    }
+                },
+                {
+                    panelId: 11,
+                    id: 2,
+                    cssColor: "yellow-card",
+                    content: {
+                        title: "PROPOSTA - 89",
+                        RCI: "Gabriel Schimidt mylla",
+                        produtor: "Fazenda Limoeiro",
+                        regiao: "CERL - Balsas/MA",
+                        data: "19/01/2017 16:44:12",
+                        colheita: ""
+                    }
+                },
+                {
+                    panelId: 12,
+                    id: 3,
+                    cssColor: "red-card",
+                    content: {
+                        title: "PROPOSTA - 90",
                         RCI: "Gabriel Schimidt mylla",
                         produtor: "Fazenda Limoeiro",
                         regiao: "CERL - Balsas/MA",
